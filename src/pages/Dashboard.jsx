@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { logoutUser } from '../api/api';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -8,10 +9,7 @@ function Dashboard() {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:4000/api/logout', {
-        method: 'POST',
-        credentials: 'include'
-      });
+      await logoutUser();
 
       //localStorage.removeItem('token'); //borra el token 
       logout(); //limpa el usuario del contexto
