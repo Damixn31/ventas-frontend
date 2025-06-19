@@ -20,3 +20,4 @@ api.interceptors.response.use(
 export const loginUser = (data) => api.post('/login', data);
 export const logoutUser = () => api.post('/logout');
 export const getProfile = () => api.get('/me');
+export const getVentas = () => api.get('/productos');
