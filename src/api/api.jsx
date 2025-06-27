@@ -20,4 +20,10 @@ api.interceptors.response.use(
 export const loginUser = (data) => api.post('/login', data);
 export const logoutUser = () => api.post('/logout');
 export const getProfile = () => api.get('/me');
-export const getVentas = () => api.get('/productos');
+export const getVentas = () => api.get('/ventas');
+
+//Dashboard Charts
+export const getGananciaMensual = () => api.get('/ventas/ganancia-mensual?anio=2025');
+export const getTopProductos = () => api.get('/ventas/top-productos');
+export const getIngresosPorMoneda = () => api.get('/ventas/ingresos-moneda');
+export const getVentasPorFormaPago = () => api.get('/ventas/formas-pago');

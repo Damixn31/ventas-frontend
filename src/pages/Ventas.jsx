@@ -12,6 +12,7 @@ import { fetchVentas } from '../features/ventasSlice';
 const Ventas = () => {
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector((state) => state.ventas);
+  console.log(items);
 
   useEffect(() => {
     dispatch(fetchVentas());
@@ -22,7 +23,7 @@ const Ventas = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-6">Historial de Ventas</h1>
+      <h1 className="text-gray-200 text-2xl font-bold mb-6">Historial de Ventas</h1>
 
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm text-left bg-white shadow rounded-lg">
@@ -44,8 +45,8 @@ const Ventas = () => {
                 key={venta.id}
                 className="hover:bg-gray-50 transition-colors"
               >
-                <td className="px-4 py-3 font-medium">{venta.producto}</td>
-                <td className="px-4 py-3">{venta.cliente}</td>
+                <td className="px-4 py-3 font-medium">{venta.Producto.nombre}</td>
+                <td className="px-4 py-3">{venta.Cliente.nombre}</td>
                 <td className="px-4 py-3">{venta.fecha}</td>
                 <td className="px-4 py-3">{venta.cantidad}</td>
                 <td className="px-4 py-3">${venta.precio_unitario}</td>
