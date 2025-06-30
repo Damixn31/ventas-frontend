@@ -12,7 +12,7 @@ import { fetchVentas } from '../features/ventasSlice';
 const Ventas = () => {
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector((state) => state.ventas);
-  console.log(items);
+  //console.log(items);
 
   useEffect(() => {
     dispatch(fetchVentas());

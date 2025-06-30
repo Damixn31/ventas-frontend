@@ -16,10 +16,17 @@ api.interceptors.response.use(
     return Promise.reject(new Error(msg));
   }
 );
-
+//login
 export const loginUser = (data) => api.post('/login', data);
 export const logoutUser = () => api.post('/logout');
 export const getProfile = () => api.get('/me');
+// productos
+export const getProductos = () => api.get('/productos');
+export const getProducto = (id) => api.get(`/productos/${id}`);
+export const createProducto = (data) => api.post('/productos', data);
+export const updateProducto = (id, data) => api.put(`productos/${id}`, data);
+export const deleteProducto = (id) => api.delete(`/productos/${id}`);
+
 export const getVentas = () => api.get('/ventas');
 
 //Dashboard Charts

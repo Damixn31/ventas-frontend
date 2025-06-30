@@ -4,7 +4,7 @@ import VentasReducer from './features/ventasSlice';
 
 
 export const store = configureStore({
-   reducer: {
+  reducer: {
     productos: productosReducer,
     ventas: VentasReducer,
   },
