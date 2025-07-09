@@ -5,13 +5,17 @@ import { useState } from 'react';
 import ConfirmModal from './ui/ConfirmModal';
 
 export default function ProductosList({ productos }) {
+  const [productoDelete, setProductoDelete] = useState(null);
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenForm = () => setModalOpen(true);
+  const handleCloseForm = () => setModalOpen(false);
 
   const handleDelete = async (id) => {
     await deleteProducto(id);
     dispatch(fetchProductos())
-    setModalOpen(false);
+    setProductoDelete(null);
   }
   if (!productos || productos.length === 0) {
     return <p>No hay productos disponibles.</p>;
@@ -41,19 +45,22 @@ export default function ProductosList({ productos }) {
               </td>
               <td className="px-4 py-2">
                 <button
-                  onClick={() => setModalOpen(true)}
+                  onClick={() => setProductoDelete(producto)}
                   className="text-red-500 mt-2 text-sm hover:underline"
                 >
                   Eliminar
                 </button>
 
-                <ConfirmModal
-                  isOpen={modalOpen}
-                  onClose={() => setModalOpen(false)}
-                  onConfirm={handleDelete}
-                  title="¿Eliminar producto?"
-                  description={`¿Estás seguro de que querés eliminar "${producto.nombre}"? Esta acción no se puede deshacer.`}
-                />
+                {productoDelete && (
+                  <ConfirmModal
+                    isOpen={true}
+                    onClose={() => setProductoDelete(null)}
+                    onConfirm={() => handleDelete(productoDelete.id)}
+                    title="¿Eliminar producto?"
+                    description={`¿Estás seguro de que querés eliminar "${productoDelete.nombre}"? Esta acción no se puede deshacer.`}
+                  />
+
+                )}
               </td>
             </tr>
           ))}
@@ -63,3 +70,5 @@ export default function ProductosList({ productos }) {
 
   );
 }
+
+
